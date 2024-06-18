@@ -4,8 +4,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('./src/app/firebase');
 require('./src/app/firestore');
-const authController = require('./src/controllers/authController');
-const historyController = require('./src/controllers/historyController');
 const routes = require('./src/routes/routes');
 
 require('dotenv').config();
@@ -21,12 +19,12 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-// Gunakan controller auth
-// app.use('/auth', authController);
-// app.use('/user', historyController);
-
+// controllers
 app.use(routes);
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+const HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, HOST, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
