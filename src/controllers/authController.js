@@ -1,6 +1,9 @@
 const { registerUser } = require('../services/users/userRegister');
 const { LoginUser } = require('../services/users/userLogin');
 const { LogoutUser } = require('../services/users/userLogout');
+const { updateUserProfile } = require('../services/users/userUpdateProfile');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 require('../app/firebase');
 require('../app/firestore');
 
@@ -44,4 +47,22 @@ async function LogoutController(req, res) {
   }
 }
 
-module.exports = {RegisterController, LoginController, LogoutController};
+async function UpdateProfileController(req, res) {
+  const uid = req.body.uid;
+  const image = req.file.path;
+
+  if (!uid || typeof uid !== 'string') {
+    res.status(400).send({ error: 'Invalid uid' });
+    return;
+  }
+
+  try {
+    const imageUrl = await updateUserProfile(uid, image);
+    res.status(200).send({ imageUrl });
+  } catch (error) {
+    console.error(error);
+    res.status(400).send({ error: error.message });
+  }
+}
+
+module.exports = {RegisterController, LoginController, LogoutController, UpdateProfileController};
