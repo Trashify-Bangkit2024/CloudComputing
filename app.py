@@ -9,6 +9,9 @@ app = Flask(__name__)
 model = load_model('trashify_model.h5')
 
 @app.route('/predict', methods=['POST'])
+def home():
+    return "API saya bisa"
+
 def predict():
     if 'file' not in request.files:
         return "No file part"
