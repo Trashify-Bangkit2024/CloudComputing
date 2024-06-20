@@ -5,11 +5,15 @@ require('../../../app/firebase');
 require('../../../app/firestore');
 
 async function postHistoryService(uid, history) {
+  if (!history) {
+    throw new Error('History object is required');
+  }
+  
   if (!history.foto || !history.namaSampah || !history.jenisSampah || !history.deskripsi) {
     throw new Error('Missing required history properties');
   }
 
-  let now = new Date(Timestamp.now().seaconds * 1000);
+  let now = new Date(Timestamp.now().seconds * 1000);
   let offsetInHours = 7;
   now.setHours(now.getHours() + offsetInHours);
   history.waktu = now.toISOString();

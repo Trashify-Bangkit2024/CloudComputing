@@ -18,6 +18,23 @@ async function updateUserProfile(uid, file) {
   return userImageProfile;
 }
 
+async function getUserImageProfile(uid) {
+  if (!uid || typeof uid !== 'string') {
+    throw new Error('Invalid uid');
+  }
+
+  const userRecord = await db.collection('users').doc(uid).get();
+
+  if (!userRecord.exists) {
+    throw new Error('User not found');
+  }
+
+  const userData = userRecord.data();
+
+  return userData.userImageProfile;
+}
+
 module.exports = {
   updateUserProfile,
+  getUserImageProfile,
 };

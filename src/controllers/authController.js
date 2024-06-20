@@ -1,7 +1,7 @@
 const { registerUser } = require("../services/users/userRegister");
 const { LoginUser } = require("../services/users/userLogin");
 const { LogoutUser } = require("../services/users/userLogout");
-const { updateUserProfile } = require("../services/users/userUpdateProfile");
+const { updateUserProfile, getUserImageProfile } = require("../services/users/userUpdateProfile");
 const { uploadToGCS } = require("../services/gcsupload");
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
@@ -81,9 +81,20 @@ async function UpdateProfileController(req, res) {
   }
 }
 
+async function GetUserImageProfileController(req, res) {
+  try {
+    const uid = req.params.uid;
+    const userImageProfile = await getUserImageProfile(uid);
+    res.json({ userImageProfile });
+  } catch (error) {
+    res.status(500).json({ error: error.toString() });
+  }
+}
+
 module.exports = {
   RegisterController,
   LoginController,
   LogoutController,
   UpdateProfileController,
+  GetUserImageProfileController,
 };

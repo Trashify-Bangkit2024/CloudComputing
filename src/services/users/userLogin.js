@@ -19,7 +19,8 @@ async function LoginUser(email, password) {
   return {
     uid: userRecord.docs[0].id,
     email: userData.email,
-    userName: userData.userName
+    userName: userData.userName,
+    userImageProfile: userData.userImageProfile
   };
 }
 
