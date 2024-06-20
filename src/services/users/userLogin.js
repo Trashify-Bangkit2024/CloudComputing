@@ -16,7 +16,13 @@ async function LoginUser(email, password) {
     throw new Error('Login failed');
   }
 
-  return userRecord.docs[0].id;
+  return {
+    uid: userRecord.docs[0].id,
+    email: userData.email,
+    userName: userData.userName
+  };
 }
+
+module.exports = {LoginUser};
 
 module.exports = {LoginUser};

@@ -9,7 +9,7 @@ async function postHistoryService(uid, history) {
     throw new Error('Missing required history properties');
   }
 
-  let now = new Date(Timestamp.now().seconds * 1000);
+  let now = new Date(Timestamp.now().seaconds * 1000);
   let offsetInHours = 7;
   now.setHours(now.getHours() + offsetInHours);
   history.waktu = now.toISOString();
