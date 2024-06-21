@@ -22,18 +22,18 @@ This is the backend for the Trashify project, which helps users identify and man
    ```
 
 2. **Install Depedencies**
-  ```bash
-  npm install
-  ```
+   ```bash
+   npm install
+   ```
 
 3. **Set up environment variables:**
 Create a .env file in the root directory and add the necessary environment variables. See [Environment Variables](#environment-variables) for more details.
 
 ## Usage
 To start the server, run:
-  ```bash
-  node index.js
-  ```
+   ```bash
+   node index.js
+   ```
 The server will start on the port specified in the environment variables or default to port 8080.
 
 
@@ -183,22 +183,22 @@ By following these steps, you can thoroughly test each endpoint in your Node.js 
 
 ## Environment Variables
 Create a .env file in the root directory of your project and add the following variables:
-```bash
-  TYPE=YOUR-TYPE
-  PROJECT_ID=YOUR_PROJECT_ID
-  PRIVATE_KEY_ID=YOUR_PRIVATE_KEY_ID
-  PRIVATE_KEY=YOUR_PRIVATE_KEY
-  CLIENT_EMAIL=YOUR_CLIENT_EMAIL
-  CLIENT_ID=YOUR_CLIENT_ID
-  AUTH_URI=YOUR_AUTH_URL
-  TOKEN_URI=YOUR_TOKEN_URI
-  AUTH_PROVIDER_X509_CERT_URL=YOUR_AUTH_PROVIDER_X509_CERT_URL
-  CLIENT_X509_CERT_URL=YOUR_CLIENT_X509_CERT_URL
-  UNIVErSE_DOMAIN=YOUR_UNIVErSE_DOMAIN
-  SESSION_SECRET=YOUR_SESSION_SECRET
-  DATABASE_URL=YOUR_DATABASE_URL
-  MODEL_URL=YOUR_MODEL_URL
-  ```
+   ```bash
+     TYPE=YOUR-TYPE
+     PROJECT_ID=YOUR_PROJECT_ID
+     PRIVATE_KEY_ID=YOUR_PRIVATE_KEY_ID
+     PRIVATE_KEY=YOUR_PRIVATE_KEY
+     CLIENT_EMAIL=YOUR_CLIENT_EMAIL
+     CLIENT_ID=YOUR_CLIENT_ID
+     AUTH_URI=YOUR_AUTH_URL
+     TOKEN_URI=YOUR_TOKEN_URI
+     AUTH_PROVIDER_X509_CERT_URL=YOUR_AUTH_PROVIDER_X509_CERT_URL
+     CLIENT_X509_CERT_URL=YOUR_CLIENT_X509_CERT_URL
+     UNIVErSE_DOMAIN=YOUR_UNIVErSE_DOMAIN
+     SESSION_SECRET=YOUR_SESSION_SECRET
+     DATABASE_URL=YOUR_DATABASE_URL
+     MODEL_URL=YOUR_MODEL_URL
+   ```
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request.
 
