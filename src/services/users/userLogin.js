@@ -25,5 +25,3 @@ async function LoginUser(email, password) {
 }
 
 module.exports = {LoginUser};
-
-module.exports = {LoginUser};

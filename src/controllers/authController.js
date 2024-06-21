@@ -61,7 +61,7 @@ async function LogoutController(req, res) {
 }
 
 async function UpdateProfileController(req, res) {
-  const { uid } = req.params;
+  const { uid } = req.body; // Get uid from form-data
   const file = req.file;
 
   if (!uid || typeof uid !== 'string') {

@@ -4,17 +4,21 @@ const {RegisterController, LoginController, LogoutController, UpdateProfileContr
 const {postHistory, getHistory } = require("../controllers/historyController");
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
-const {predictImage} = require('../controllers/predictionController')
+const {predictImage, getPredictionController} = require('../controllers/predictionController')
 require('../app/firebase');
 require('../app/firestore');
 
 router.post('/auth/register', upload.single('userImageProfile'), RegisterController);
 router.post('/auth/login', LoginController);
 router.post('/auth/logout', LogoutController);
+
 router.post('/user/history', upload.single('image') , postHistory);
 router.get('/user/history/:uid?', getHistory);
-router.post('/user/update/:uid', upload.single('image') ,UpdateProfileController);
+
+router.post('/user/update', upload.single('userImageProfile'), UpdateProfileController);
+router.get('/user/profile/:uid', GetUserImageProfileController);
+
 router.post('/user/predict', upload.single('image'), predictImage);
-router.get('/user/profile/:uid', GetUserImageProfileController)
+router.get('/user/predict/:uid', getPredictionController);
 
 module.exports = router;

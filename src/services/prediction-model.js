@@ -94,19 +94,6 @@ async function predictClassification(imageTensor, uid, userData) {
         priceRange = "Tidak ada informasi harga untuk label ini.";
     }
 
-    // Simpan hasil prediksi ke dalam data pengguna berdasarkan UID
-    const predictionsCollection = firestore.collection(
-      `users/${uid}/predictions`
-    );
-    await predictionsCollection.add({
-      label: predictedLabel,
-      probabilities: probabilities,
-      description: description,
-      action: action,
-      priceRange: priceRange,
-      timestamp: new Date(),
-    });
-
     // Konversi Tensor ke Buffer
     const buffer = await tf.node.encodePng(imageTensor.squeeze());
 
@@ -127,6 +114,21 @@ async function predictClassification(imageTensor, uid, userData) {
     // Gunakan format URL Google Cloud Storage
     const imageUrl = `https://storage.googleapis.com/${bucketName}/${filename}`;
 
+
+     // Simpan hasil prediksi ke dalam data pengguna berdasarkan UID
+     const predictionsCollection = firestore.collection(
+      `users/${uid}/predictions`
+    );
+    await predictionsCollection.add({
+      label: predictedLabel,
+      probabilities: probabilities,
+      description: description,
+      action: action,
+      priceRange: priceRange,
+      imageUrl: imageUrl,
+      timestamp: new Date(),
+    });
+
     // Return prediction details
     return {
       label: predictedLabel,
@@ -143,4 +145,27 @@ async function predictClassification(imageTensor, uid, userData) {
   }
 }
 
-module.exports = { predictClassification };
+async function getAllPredictions(uid) {
+  try {
+    const predictionsCollection = firestore.collection(`users/${uid}/predictions`);
+    const snapshot = await predictionsCollection.orderBy('timestamp', 'desc').get();
+
+    if (snapshot.empty) {
+      console.log('No matching documents.');
+      return [];
+    }
+
+    const predictions = [];
+    snapshot.forEach(doc => {
+      predictions.push(doc.data());
+    });
+
+    return {uid, predictions};
+
+  } catch (error) {
+    console.error("Error getting predictions:", error);
+    throw new Error("Failed to get predictions");
+  }
+}
+
+module.exports = { predictClassification, getAllPredictions };

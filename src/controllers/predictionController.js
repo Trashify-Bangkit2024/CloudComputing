@@ -2,6 +2,7 @@ const { predictClassification } = require('../services/prediction-model');
 const { Firestore } = require('@google-cloud/firestore');
 const firestore = new Firestore();
 const { preprocessImage } = require('../services/preprocessingimage');
+const { getAllPredictions } = require('../services/prediction-model');
 
 async function predictImage(req, res) {
   try {
@@ -10,7 +11,7 @@ async function predictImage(req, res) {
     }
 
     const imageBuffer = req.file.buffer;
-    const uid = req.body.uid; // Assuming uid is passed in the request body
+    const uid = req.body.uid;
 
     if (!uid) {
       throw new Error('UID is required');
@@ -37,4 +38,21 @@ async function predictImage(req, res) {
   }
 }
 
-module.exports = { predictImage };
+async function getPredictionController(req, res) {
+  try {
+    const uid = req.params.uid;
+    const predictionData = await getAllPredictions(uid);
+
+    if (!predictionData) {
+      return res.status(404).json({ message: 'No prediction data found for this user.' });
+    }
+
+    return res.status(200).json(predictionData);
+
+  } catch (error) {
+    console.error("Error getting prediction:", error);
+    return res.status(500).json({ message: 'Failed to get prediction.' });
+  }
+}
+
+module.exports = { predictImage, getPredictionController };
