@@ -170,16 +170,16 @@ To test the various controllers in your Node.js backend using Postman, you can f
 By following these steps, you can thoroughly test each endpoint in your Node.js backend using Postman and ensure that your application is working as expected.
 
 ## Dependencies
-@google-cloud/firestore: ^7.8.0
-@hapi/hapi: ^21.3.9
-@tensorflow/tfjs-node: ^4.20.0
-bcrypt: ^5.1.1
-body-parser: ^1.20.2
-cors: ^2.8.5
-dotenv: ^16.4.5
-express: ^4.19.2
-express-session: ^1.18.0
-firebase-admin: ^12.1.1
+- @google-cloud/firestore: ^7.8.0
+- @hapi/hapi: ^21.3.9
+- @tensorflow/tfjs-node: ^4.20.0
+- bcrypt: ^5.1.1
+- body-parser: ^1.20.2
+- cors: ^2.8.5
+- dotenv: ^16.4.5
+- express: ^4.19.2
+- express-session: ^1.18.0
+- firebase-admin: ^12.1.1
 
 ## Environment Variables
 Create a .env file in the root directory of your project and add the following variables:
