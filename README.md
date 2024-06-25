@@ -4,16 +4,17 @@ This is the backend for the Trashify project, which helps users identify and man
 
 ## Table of Contents
 
+- [Cloud Architecture](#cloud-architecture)
 - [Installation](#installation)
 - [Usage](#usage)
-- [API Endpoints](#api-endpoints)
+- [API Endpoints](#api-endpoint)
 - [Dependencies](#dependencies)
 - [Environment Variables](#environment-variables)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Cloud Architecture
-<img width="637" alt="Screenshot 2024-06-25 at 16 14 48" src="https://github.com/Trashify-Bangkit2024/CloudComputing/assets/91829663/4a0422ef-2a43-45f9-943e-f6812fb3fe87">
+<img width="1000" alt="Screenshot 2024-06-25 at 16 14 48" src="https://github.com/Trashify-Bangkit2024/CloudComputing/assets/91829663/4a0422ef-2a43-45f9-943e-f6812fb3fe87">
 
 ## Installation
 
